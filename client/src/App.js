@@ -2,6 +2,8 @@ import './index.css';
 import axios from 'axios';
 import {useEffect,useState } from "react"
 import Card from './Components/Card';
+import Navbar from './Components/Navbar';
+import Sidebar from './Components/Sidebar';
 function App() {
   // use effect is for loading the page to get the data from the api 
   // the empty array in the end is for reloading once 
@@ -18,10 +20,17 @@ function App() {
 },[])
 
   return (
-    <div className="App flex flex-wrap w-full my-2 px-2">
+    <div>
+      <Navbar />
+      <div className='flex flex-row'>
+        <Sidebar/>
+      
+      <div className="App flex flex-wrap lg:my-2 lg:px-2">
       {listOFPosts.map((item,key) => {
-        return <Card title={item.title} text={item.postText} username={item.usename} key={ key}/>
+        return <Card title={item.title} text={item.postText} username={item.uesrname} key={ key}/>
       })}
+        </div>
+        </div>
       </div>
       
   );

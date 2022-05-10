@@ -4,7 +4,7 @@ export default function Card(props) {
   return (
       
           
-      <div className="p-4 lg:w-1/3">
+      <div className="p-4 lg:w-1/3 w-full ">
         <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 roundedLg overflow-hidden text-center relative">
           <h2 className="trackingWidest text-xs title-font font-medium text-gray-400 mb-1">
             CATEGORY
