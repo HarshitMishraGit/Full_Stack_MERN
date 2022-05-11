@@ -4,7 +4,7 @@ import { useState } from "react"
 function Sidebar() {
     const [mobile_nav, setmobile_nav] = useState("-translate-x-64");
     const sidebarHandler = () => {
-        if(mobile_nav=="-translate-x-64"){
+        if(mobile_nav==="-translate-x-64"){
             setmobile_nav("-translate-x-0")
         }
         else {
@@ -12,7 +12,7 @@ function Sidebar() {
         }
     }
     return (
-        <div className="">
+        <div className="sticky top-14 z-10 h-[92vh] bottom-0">
             {/* Sidebar starts */}
             {/* Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] */}
             <div className={`w-64 absolute sm:relative bg-gray-800 shadow md:h-full flex-col justify-between hidden sm:flex`}> {/* hidden sm:flex*/}
