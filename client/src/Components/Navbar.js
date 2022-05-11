@@ -3,17 +3,16 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-]
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+const navigation = [
+  { name: 'Dashboard', href: '#', current:false },
+  { name: 'Team', href: '#', current: false },
+  { name: 'Projects', href: '#', current: false },
+  { name: 'Calendar', href: '#', current:false },
+]
 export default function Navbar() {
   return (
     <Disclosure as="nav" className="bg-gray-800 sticky top-0 z-30">
@@ -53,11 +52,12 @@ export default function Navbar() {
                         href={item.href}
                         className={classNames(
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'px-3 py-2 rounded-md text-sm font-medium'
+                          'px-3 py-2 rounded-md text-sm font-medium '
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
+                       
                       </a>
                     ))}
                   </div>

@@ -71,7 +71,7 @@ export default function Forms() {
                                         
                         <label  className="block mb-2 text-sm font-medium text-white">Your Note : </label>
                         <ErrorMessage className="text-gray-200 text-sm" name="postText" component="span"/>
-                        
+                        {/* fiels as="textarea means it look like a textarea" */}
                       <Field as="textarea" id="inputCreatePost" className="block p-2.5 w-full text-sm text-gray-100 bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 rounded-lg  focus:outline-none placeholder:text-gray-200" placeholder="Enter something..." name="postText" />
                                         
                       <div className="mt-6">
