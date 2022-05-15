@@ -2,13 +2,14 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import '../index.css'
-import { useState } from "react";
+import '../index.css';
+import { Link } from "react-router-dom";
+// import './maximize.svg'
 export default function Card(props) {
   const initialValues = {
-    title: "",
-    postText: "",
-    username: "",
+    title: `${props.title}`,
+    postText: `${props.text}`,
+    username: `${props.username}`,
   };
 
   const validationSchema = Yup.object().shape({
@@ -34,32 +35,7 @@ export default function Card(props) {
   return (
       
           
-      // <div className="p-4 lg:w-1/3 w-full ">
-      //   <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 roundedLg overflow-hidden text-center relative">
-      //     <h2 className="trackingWidest text-xs title-font font-medium text-gray-400 mb-1">
-      //       CATEGORY
-      //     </h2>
-      //     <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
-      //       {props.title}
-      //     </h1>
-      //     <p className="leading-relaxed mb-3">{props.text}</p>
-      //     <a className="text-indigo-500 inline-flex items-center">
-      //       {props.username}
-      //       <svg
-      //         className="w-4 h-4 ml-2"
-      //         viewBox="0 0 24 24"
-      //         stroke="currentColor"
-      //         strokeWidth="2"
-      //         fill="none"
-      //         strokeLinecap="round"
-      //         strokeLinejoin="round"
-      //       >
-      //         <path d="M5 12h14"></path>
-      //         <path d="M12 5l7 7-7 7"></path>
-      //       </svg>
-      //     </a>
-      //   </div>
-      // </div>
+  
  
     <div className="shadow-lg mt-1 mx-1 sm:mr-0 rounded-xl w-full sm:w-[33%] p-4 bg-white dark:bg-gray-800 relative overflow-hidden cursor-pointer">
      
@@ -108,44 +84,43 @@ export default function Card(props) {
             <div className="relative w-[90%] sm:w-1/2 my-6 mx-auto max-w-3xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ">
-                {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t ">
-                  <h3 className="text-3xl font-semibold text-white">
-                    Edit Notes
-                  </h3>
-                  <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setshowCardModal(false)}
-                  >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
-                  </button>
-                </div>
-                 {/* formik */}
+                            {/* formik */}
      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         <Form>
+                  {/*header*/}
+                <div className="flex items-start justify-between  border-b border-solid border-slate-200 rounded-t bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 ">
+                  {/* <h3 className="text-3xl font-semibold text-white">
+                    Edit Notes
+                  </h3> */}
+                   <ErrorMessage className="text-gray-200 text-sm" name="title" component="span"/>
+                   <Field type="text" id="inputCreatePost" className="bg-transparent focus:outline-none focus:ring-offset-0 text-white placeholder-gray-200 text-3xl rounded-t-lg  block w-full p-5  font-bold" placeholder="" name="title"  />
+                  <Link
+                          className="p-1 ml-auto border-0 text-gray-200 flex felx-row float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                          onClick={() => setshowCardModal(false)}
+                          to={`/post/${props.id}`}    >
+                          {/* <img src="./maximize.svg" className="w-5 h-5" /> */}
+                          <span className="text-xs text-gray-300 w-24">Open as page</span>
+                          <img src={process.env.PUBLIC_URL+"maximize.svg"} className="w-4 h-5 text-gray-200" />
+                  </Link>
+                </div>
+     
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                     <div className="my-4 text-slate-500 text-lg leading-relaxed">
                         
                        
-                        <div className="mb-6">
-                          <label  className="block mb-2 text-sm font-medium text-white">Title</label>
-                          <ErrorMessage className="text-gray-200 text-sm" name="title" component="span"/>
-                        <Field type="text" id="inputCreatePost" className="focus:outline-none focus:ring-offset-0 text-white placeholder-gray-200 text-sm rounded-lg  block w-full p-2.5 bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700" placeholder="" name="title" value={props.title} />
-                      </div>
+                        
                                         
                         <label  className="block mb-2 text-sm font-medium text-white">Your Note : </label>
                         <ErrorMessage className="text-gray-200 text-sm" name="postText" component="span"/>
                         {/* fiels as="textarea means it look like a textarea" */}
-                      <Field as="textarea" id="inputCreatePost" className="block p-2.5 w-full text-sm text-gray-100 bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 rounded-lg  focus:outline-none placeholder:text-gray-200" placeholder="Enter something..." name="postText" value={props.text} />
+                      <Field as="textarea" id="inputCreatePost" className="block p-2.5 w-full text-sm text-gray-100 bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 rounded-lg  focus:outline-none placeholder:text-gray-200" placeholder="Enter something..." name="postText" rows={14}  />
                                         
                       <div className="mt-6">
                         <label htmlFor="username-success" className="block mb-2 text-sm font-medium text-white">Your name</label>
                         <ErrorMessage className="text-gray-200 text-sm" name="username" component="span"/>
 
-                        <Field type="text" id="inputCreatePost" className="focus:outline-none focus:ring-offset-0 text-white placeholder-gray-200 text-sm rounded-lg  block w-full p-2.5 bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700" placeholder="Bonnie Green" name="username" value={props.username}/>
+                        <Field type="text" id="inputCreatePost" className="focus:outline-none focus:ring-offset-0 text-white placeholder-gray-200 text-sm rounded-lg  block w-full p-2.5 bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700" placeholder="Bonnie Green" name="username" />
                       </div>
 
                     </div>

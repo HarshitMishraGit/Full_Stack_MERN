@@ -1,18 +1,19 @@
 module.exports = (sequelize,DataTypes) => {
-    const Posts = sequelize.define("Posts", {
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        postText: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+    const Users = sequelize.define("Users", {
         username: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique:true,
         },
-        visibility: {
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        phone: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -20,12 +21,12 @@ module.exports = (sequelize,DataTypes) => {
 
 // we are associating the comments with the post table
     
-    Posts.associate = (models) => {
-        Posts.hasMany(models.Comments, {
+    Users.associate = (models) => {
+        Users.hasMany(models.Posts, {
             onDelete: "cascade",
         });
     }
 
-    return Posts
+    return Users
 }
 

@@ -1,0 +1,65 @@
+
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+      <title>Document</title>
+  </head>
+  <body>
+    <div class="mx-3 my-3 bg-pink-300 w-48 px-10 py-5 flex justify-self-center" id="id" onClick="run()">
+          <span>Title</span> <br>
+          <span>This is a note written by : </span>
+          
+        </div>
+        <span  class="cursor-pointer select-none" onClick="heloo()">Close</span>
+        <iframe id="iframe" src="https://codeforgeek.com/manage-session-using-node-js-express-4/" height="300"  frameborder="0" class="w-full"></iframe>
+        <button onclick="size()"class="btn bg-gray-300 px-5 py-2 rounded-lg hover:bg-black hover:text-white">Increase the size</button>
+        <button onclick="minsize()" class="btn bg-gray-300 px-5 py-2 rounded-lg hover:bg-black hover:text-white">decrease the size</button>
+      <script>
+    const div = document.getElementById('id')
+const run =()=>{
+  div.classList.add("w-1/2")
+//   div.classList.add("inset-0")
+//   div.classList.add("relative")
+//   div.classList.add("mx-auto")
+//   div.classList.add("transition-all")
+  div.classList.add("translate-x-20")
+  div.classList.add("translate-y-20")
+  div.classList.add("duration-1000")
+  div.classList.add("z-10")
+  div.classList.remove('w-48')
+}
+const heloo =()=>{
+    div.classList.remove("w-1/2")
+div.classList.remove("inset-0")
+div.classList.remove("relative")
+div.classList.remove("mx-auto")
+div.classList.remove("bg-black")
+div.classList.remove("translate-x-20")
+  div.classList.remove("translate-y-20")
+div.classList.remove("z-10")
+div.classList.add('w-48')
+
+  console.log("This is working fine")
+}
+count=300;
+const size =()=>{
+    const iframe= document.getElementById('iframe');
+    console.log("This is working")
+    console.log(iframe.height)
+    count+=100
+    iframe.height=count;
+}
+const minsize=()=>{
+  count-=100
+  iframe.height=count;
+
+
+}
+      </script>
+  </body>
+  </html>

@@ -8,12 +8,15 @@ export default function Forms() {
     title: "",
     postText: "",
     username: "",
+    visibilty: "",
+    
   };
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required("You must input a Title!"),
     postText: Yup.string().required("Note is required !"),
     username: Yup.string().min(3).max(50).required(),
+    visibilty: Yup.string().required(),
   });
 
   const onSubmit = (data) => {
@@ -84,8 +87,17 @@ export default function Forms() {
                     </div>
                 
                 </div>
-                {/*footer*/}
-                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b ">
+                    {/*footer*/}
+                    <div className="flex flex-row justify-between border-t border-solid border-slate-200 rounded-b">
+                      <div className="mx-10 my-5">
+                     
+                        <Field as="select" name="visibilty" className="bg-transparent px-2 py-1 text-white rounded-lg focus:outline-none  ">
+             <option value="" className="text-gray-900">visibilty</option>
+             <option value="Public" className="text-gray-900">Public</option>
+             <option value="Private" className="text-gray-900">Private</option>
+           </Field>
+                      </div>
+                <div className="flex items-center justify-end p-6  ">
                   <button
                     className="text-red-500 bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 rounded-lg font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
@@ -99,7 +111,8 @@ export default function Forms() {
                   >
                     Save Changes
                   </button>
-                    </div>
+                      </div>
+                      </div>
           </Form>
       </Formik>
               </div>

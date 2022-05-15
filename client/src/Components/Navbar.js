@@ -10,8 +10,8 @@ function classNames(...classes) {
 const navigation = [
   { name: 'Dashboard', href: '#', current:false },
   { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current:false },
+  { name: 'Login', href: '/authL', current: false },
+  { name: 'SignUp', href: '/authSU', current:false },
 ]
 export default function Navbar() {
   return (
