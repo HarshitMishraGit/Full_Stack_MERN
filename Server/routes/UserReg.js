@@ -13,7 +13,8 @@ router.get("/userAvailable/:username", async (req, res) => {
     const username = req.params.username;
     const isAuth = await Users.findAll({ where: { username: username } });
     if (isAuth.length !== 0) {
-        res.json({error:"user is already exist"})
+        res.json({ error: "user is already exist" })
+        
     }
 
 
