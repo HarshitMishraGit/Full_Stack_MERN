@@ -20,7 +20,6 @@ router.get("/userAvailable/:username", async (req, res) => {
 
 })
 router.post("/", async (req, res) => {
-    hashing = '';
     const user = req.body;
     const username=user.username
     
