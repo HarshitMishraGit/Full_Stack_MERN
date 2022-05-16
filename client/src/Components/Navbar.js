@@ -7,13 +7,29 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const navigation = [
-  { name: 'Dashboard', href: '#', current:false },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Login', href: '/authL', current: false },
-  { name: 'SignUp', href: '/authSU', current:false },
-]
-export default function Navbar() {
+export default function Navbar(props) {
+  // const navigation = [
+  //   { name: 'Dashboard', href: '#', current:false },
+  //   { name: 'Team', href: '#', current: false },
+  //   { name: 'Login', href: '/authL', current: false },
+  //   { name: 'SignUp', href: '/authSU', current:false },
+  // ]
+  let navigation = [];
+  if (props.userloggedin == true) {
+     navigation = [
+        { name: 'Dashboard', href: '#', current:false },
+        { name: 'Team', href: '#', current: false },
+        { name: 'Login', href: '/authL', current: false },
+        { name: 'SignUp', href: '/authSU', current:false },
+      ];
+  }
+  else {
+    navigation = [
+      { name: 'Dashboard', href: '#', current:false },
+      { name: 'Team', href: '#', current: false },
+      { name: 'Logout', href: '/authL/logout', current: false },
+    ];
+  }
   return (
     <Disclosure as="nav" className="bg-gray-800 sticky top-0 z-30">
       {({ open }) => (

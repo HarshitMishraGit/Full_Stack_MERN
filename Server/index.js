@@ -1,4 +1,5 @@
 const express = require('express');
+const session= require('express-session')
 const app = express();
 const db = require('./models')
 const cors = require('cors')
@@ -7,7 +8,14 @@ app.use(express.json())
 // to use the localhost as api as well as react app
 app.use(cors())
 
-
+app.use(session({
+    secret: 'keyboard cat',
+// this resave should be true so that it forcefully sets the session in the store
+    resave: true,
+    saveUninitialized: true,
+    // cookie: { secure: true }
+  }))
+  
 
 // we have to make router to work
 const postRouter = require('./routes/Posts')

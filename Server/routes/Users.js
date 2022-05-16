@@ -1,18 +1,20 @@
 const express = require('express');
-const session=require('express-session')
 const router = express.Router();
 const bcrypt=require('bcrypt')
 const {Users}=require('../models')
-const app = express();
 
-app.use(session({
-    secret: 'keyboard cat',
-// this resave should be true so that it forcefully sets the session in the store
-    resave: true,
-    saveUninitialized: true,
-    // cookie: { secure: true }
-}))
-  
+
+
+// ========================>>> remember you not have to use this following statement inside the router folder or in any other folder than the 
+// index.js because the app is define in that folder so you cannot define another app=express() in any other folder <<<<<<<<<================
+                        // app.use(session({
+                        //     secret: 'keyboard cat',
+                        // // this resave should be true so that it forcefully sets the session in the store
+                        //     resave: true,
+                        //     saveUninitialized: true,
+                        //     // cookie: { secure: true }
+                        //   }))
+                        
 
 router.get("/",(req, res) => {
     if (!req.session.username) {
@@ -34,7 +36,7 @@ router.get("/logout", (req, res) => {
             res.json({error:err})
         }
         res.json({ msg: "logout successfully" })
-        res.redirect("http://loca")
+        // res.redirect("http://loca")
     });
 })
  
@@ -42,6 +44,7 @@ router.get("/logout", (req, res) => {
 router.post("/", async (req, res) => {
     
     const user = req.body;
+    const sess = req.session;
     const username=user.username
     const isAuth = await Users.findAll({ where: { username: username } })
     if (isAuth.length == 1) {
@@ -50,10 +53,10 @@ router.post("/", async (req, res) => {
         bcrypt.compare(user.password, isAuth[0].password, (err, result) => {
             // if (err) res.json({ error: err });
             if(result==true){
-                res.json({ passwordMatch: result ,loggedIn:true})
-                req.session.username = username;
-                req.session.email = isAuth[0].email;
-                req.session.phone = isAuth[0].phone;
+                sess.username = username;
+                sess.email = isAuth[0].email;
+                sess.phone = isAuth[0].phone;
+                res.json({ passwordMatch: result, loggedIn: true ,user:sess.username})
             } else {
                 res.json({ passwordMatch: result })
                 
