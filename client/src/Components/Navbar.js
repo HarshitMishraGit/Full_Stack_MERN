@@ -2,20 +2,36 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import axios from "axios";
+import { useEffect , useState} from 'react';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar(props) {
-  // const navigation = [
-  //   { name: 'Dashboard', href: '#', current:false },
-  //   { name: 'Team', href: '#', current: false },
-  //   { name: 'Login', href: '/authL', current: false },
-  //   { name: 'SignUp', href: '/authSU', current:false },
-  // ]
+export default function Navbar() {
+
+  const [userloggedin, setuserloggedin] = useState('');
+  // const [userData, setuserData] = useState({});
+  // we have to check whether the user has loggedin or not so that we can show them the login and register button respectively
+  useEffect(() => {
+    axios.get("http://localhost:3001/authL").then((response) => {
+      console.log(response);
+   if(!response.data.error){
+     setuserloggedin(true);
+    //  setuserData(response.data)
+   }
+   else {
+     setuserloggedin(false);
+
+
+    }
+    })
+  
+},[])
+  
   let navigation = [];
-  if (props.userloggedin == true) {
+  if (userloggedin == true) {
      navigation = [
         { name: 'Dashboard', href: '#', current:false },
         { name: 'Team', href: '#', current: false },

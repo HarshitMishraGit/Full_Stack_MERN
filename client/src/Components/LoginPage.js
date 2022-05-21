@@ -6,8 +6,8 @@ import * as Yup from "yup";
 
 function LoginPage() {
     const initialValues = {
-      username: "",
-      password: "",
+      username:"",
+      password:"",
      
       };
     
@@ -18,21 +18,21 @@ function LoginPage() {
       });
     
       const onSubmit = (data) => {
-        console.log(data)
+        console.log("This is the recived data : " , data)
         axios.post("http://localhost:3001/authL", data).then((response) => {
           console.log(response);
           const loggedIn = response.data.loggedIn;
           const passwordMatch = response.data.passwordMatch;
           if (loggedIn == true && passwordMatch == true) {
             alert("You are logged in")
-            window.location='/'
+            // window.location='/'
           } else if (passwordMatch == false) {
             alert("Invalid Cridential");
-            window.location="/authL"
+            window.location = "/authL";
 
           } else {
             alert("User is not registered");
-            window.location="/authSU"
+            window.location = "/authSU";
           }
 
         });

@@ -17,7 +17,7 @@ const {Users}=require('../models')
                         
 
 router.get("/",(req, res) => {
-    if (!req.session.username) {
+    if (req.session.username==null) {
        res.json({error:"user is not logged in "})
     } else {
         const user = {

@@ -1,18 +1,17 @@
 import axios from 'axios'
-import React,{useEffect} from 'react'
-
+import React from 'react'
+import {useNavigate} from 'react-router-dom';
 function Logout() {
-   
-    useEffect(() => {
+        const navigate=useNavigate()
         // axios is the methos to get the data from the api
         // Then we are building a promise so we are using then
-        axios.get("http://localhost:3001/authL/logout").then((respose) => {
+        axios.post("http://localhost:3001/authL/logout").then((respose) => {
           // It is returning a json object as we are sending it in the index.js in the server
           console.log(respose.data)
         })
       
-    }, [])
-    window.location = "/";
+        navigate('/')
+        // window.location="/"
     
   return (
       <div>
